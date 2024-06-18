@@ -98,7 +98,7 @@ return(
       </span>
     </h1>
     <a
-      href="#"
+      href="https://x.com/Diwakar26445"
       className="flex items-center gap-1 text-red-300 hover:underline"
     >
       Contact me <FiArrowRight />
@@ -134,7 +134,7 @@ const SocialsBlock = () => (
       className="col-span-6 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 md:col-span-3"
     >
       <a
-        href="#"
+        href="https://www.instagram.com/diwakarneupane264/"
         className="grid h-full place-content-center text-3xl text-white"
       >
         <SiInstagram />
@@ -213,6 +213,7 @@ const EmailListBlock = () => (
       />
       <button
         type="submit"
+        onClick={() => alert("You have been added to the mailing list, I will Reach out to you soon.")}
         className="flex items-center gap-2 whitespace-nowrap rounded bg-zinc-50 px-3 py-2 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-300"
       >
         <FiMail /> Join the list
@@ -389,7 +390,9 @@ const Card = ({imgUrl,title,discription,rating}:{
           <p className="m-0 text-xl font-bold text-gray-800">{title}</p>
           <p className="mt-2 text-sm text-gray-500"> {discription}</p>
           <p className="mt-2 text-sm text-gray-500">IMDB: {rating}</p>
-          <button className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg">Watch Now</button>
+          <button
+          onClick={() => alert("Go to the IMDB to watch the series")}
+          className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg">Watch Now</button>
         </motion.div>
       </motion.div>
     );
