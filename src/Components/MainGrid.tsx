@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { FiArrowRight, FiMail, FiMapPin } from "react-icons/fi";
-import { SiFacebook, SiInstagram, SiTiktok, SiTwitter, SiX } from 'react-icons/si';
+import { SiFacebook, SiInstagram, SiTiktok, SiX } from 'react-icons/si';
 import profile from "../images/profile.jpeg";
 import { useState } from "react";
 
