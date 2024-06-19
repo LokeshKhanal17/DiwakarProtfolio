@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { FiArrowRight, FiMail, FiMapPin } from "react-icons/fi";
-import { SiFacebook, SiInstagram, SiTiktok, SiTwitter } from 'react-icons/si';
+import { SiFacebook, SiInstagram, SiTiktok, SiTwitter, SiX } from 'react-icons/si';
 import profile from "../images/profile.jpeg";
 import { useState } from "react";
 
@@ -159,13 +159,13 @@ const SocialsBlock = () => (
         rotate: "2.5deg",
         scale: 1.1,
       }}
-      className="col-span-6 bg-blue-500 md:col-span-3"
+      className="col-span-6 bg-black md:col-span-3"
     >
       <a
         href="https://x.com/Diwakar26445"
         className="grid h-full place-content-center text-3xl text-white"
       >
-        <SiTwitter />
+        <SiX />
       </a>
     </Block>
   </>
@@ -195,11 +195,38 @@ const AboutBlock = () => (
 const LocationBlock = () => (
   <Block className="col-span-12 flex flex-col items-center gap-4 md:col-span-3">
     <FiMapPin className="text-3xl" />
-    <p className="text-center text-lg text-zinc-400">New Brunswick</p>
+   
+    <button 
+    onClick={
+        () => {
+            //go to new brunswick gooogle maps
+            window.open("https://www.google.com/maps/place/New+Brunswick,+NJ");
+        }
+    }
+    className="text-center text-lg text-zinc-400">New Brunswick</button>
   </Block>
 );
 
-const EmailListBlock = () => (
+const EmailListBlock = () => {
+    const [email, setEmail] = useState("");
+    const [isSubscribed, setIsSubscribed] = useState(false);
+    const HandelSubmit = () => {
+        if(email === "") {
+            alert("Please enter a valid email address");
+            return;
+        }
+        if(isSubscribed) {
+            alert("You have already subscribed");
+            return;
+        }
+        setIsSubscribed(true);
+        alert(`You have successfully subscribed with email: ${email}`);
+    }
+
+
+
+
+    return(
   <Block className="col-span-12 md:col-span-9">
     <p className="mb-3 text-lg">Join my mailing list</p>
     <form
@@ -210,47 +237,67 @@ const EmailListBlock = () => (
         type="email"
         placeholder="Enter your email"
         className="w-full rounded border border-zinc-700 bg-zinc-800 px-3 py-1.5 transition-colors focus:border-red-300 focus:outline-0"
+        onChange={(e) => 
+            setEmail(e.target.value)
+        }
       />
       <button
         type="submit"
-        onClick={() => alert("You have been added to the mailing list, I will Reach out to you soon.")}
+        onClick={() => HandelSubmit()}
         className="flex items-center gap-2 whitespace-nowrap rounded bg-zinc-50 px-3 py-2 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-300"
       >
         <FiMail /> Join the list
       </button>
     </form>
   </Block>
-);
+);}
 
 const Footer = () => {
     return (
       <footer className="mt-12 bg-gray-900 text-white py-8">
         <div className="container mx-auto px-4 text-center">
           <div className="mb-6">
-            <img
+            <motion.img
               src={profile}
               alt="Your Name"
               className="w-32 h-32 rounded-full mx-auto"
+              initial={{ scale: 0.8, y: 100,opacity: 0.5}}
+              animate={{ scale: 1, y: 0,opacity: 1}}
+              transition={{
+                duration: 0.5,
+                type: "spring",
+                stiffness: 260,
+                damping: 20,
+            }}
+            whileHover={{ scale: 1.1, rotate: 360 }}
             />
           </div>
           <div className="flex justify-center space-x-4 mb-6">
-        <a href="https://x.com/Diwakar26445" className="text-gray-400 hover:text-white">
-            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <a href="https://x.com/Diwakar26445" className="text-gray-400 hover:text-white transition-transform ease-in-out hover:scale-125">
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M23.5 4.5l-8.5 8.5 8.5 8.5h-3.5l-8.5-8.5-8.5 8.5h-3.5l8.5-8.5-8.5-8.5h3.5l8.5 8.5 8.5-8.5z"></path>
             </svg>
         </a>
 
-        <a href="https://www.facebook.com/war.hunter.315" className="text-gray-400 hover:text-white">
+        <a href="https://www.facebook.com/war.hunter.315" className="text-gray-400 hover:text-white transition-transform ease-in-out hover:scale-125">
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2.04c-5.5 0-9.96 4.46-9.96 9.96 0 4.4 3.62 8.06 8.26 9.8v-6.9H8.25v-2.9h2.05v-2.2c0-2.02 1.23-3.13 3.02-3.13.86 0 1.6.06 1.82.09v2.1h-1.25c-1 0-1.2.47-1.2 1.16v1.5h2.4l-.3 2.9h-2.1V22c4.64-1.74 8.26-5.4 8.26-9.8 0-5.5-4.46-9.96-9.96-9.96z"></path>
               </svg>
         </a>
-        <a href="https://www.instagram.com/diwakarneupane264/" className="text-gray-400 hover:text-white">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2.163c-3.1 0-3.48 0-4.695.068-1.196.067-2.016.277-2.748.593a5.48 5.48 0 00-1.978 1.262 5.48 5.48 0 00-1.262 1.978c-.316.732-.526 1.552-.593 2.748C.318 10.683.318 11.063.318 12c0 .937 0 1.317.068 2.532.067 1.196.277 2.016.593 2.748.316.732.741 1.35 1.262 1.978a5.48 5.48 0 001.978 1.262c.732.316 1.552.526 2.748.593 1.217.068 1.597.068 2.532.068.937 0 1.317 0 2.532-.068 1.196-.067 2.016-.277 2.748-.593a5.48 5.48 0 001.978-1.262 5.48 5.48 0 001.262-1.978c.316-.732.526-1.552.593-2.748.068-1.215.068-1.595.068-2.532 0-.937 0-1.317-.068-2.532-.067-1.196-.277-2.016-.593-2.748a5.48 5.48 0 00-1.262-1.978 5.48 5.48 0 00-1.978-1.262c-.732-.316-1.552-.526-2.748-.593C15.48 2.163 15.1 2.163 14.163 2.163c-.937 0-1.317 0-2.532.068-1.196.067-2.016.277-2.748.593a5.48 5.48 0 00-1.978 1.262 5.48 5.48 0 00-1.262 1.978c-.316.732-.526 1.552-.593 2.748C2.163 8.48 2.163 8.86 2.163 12c0 .937 0 1.317.068 2.532.067 1.196.277 2.016.593 2.748.316.732.741 1.35 1.262 1.978a5.48 5.48 0 001.978 1.262c.732.316 1.552.526 2.748.593 1.215.068 1.595.068 2.532.068.937 0 1.317 0 2.532-.068 1.196-.067 2.016-.277 2.748-.593a5.48 5.48 0 001.978-1.262 5.48 5.48 0 001.262-1.978c.316-.732.526-1.552.593-2.748.068-1.215.068-1.595.068-2.532 0-.937 0-1.317-.068-2.532-.067-1.196-.277-2.016-.593-2.748a5.48 5.48 0 00-1.262-1.978 5.48 5.48 0 00-1.978-1.262c-.732-.316-1.552-.526-2.748-.593C15.48 2.163 15.1 2.163 14.163 2.163zM12 0c.93 0 1.319 0 2.536.068 1.221.069 2.058.286 2.84.63a7.674 7.674 0 012.711 1.743 7.674 7.674 0 011.743 2.711c.344.782.561 1.619.63 2.84C22 10.681 22 11.07 22 12c0 .93 0 1.319-.068 2.536-.069 1.221-.286 2.058-.63 2.84a7.674 7.674 0 01-1.743 2.711 7.674 7.674 0 01-2.711 1.743c-.782.344-1.619.561-2.84.63C13.319 22 12.93 22 12 22c-.93 0-1.319 0-2.536-.068-1.221-.069-2.058-.286-2.84-.63a7.674 7.674 0 01-2.711-1.743 7.674 7.674 0 01-1.743-2.711c-.344-.782-.561-1.619-.63-2.84C2 13.319 2 12.93 2 12c0-.93 0-1.319.068-2.536.069-1.221.286-2.058.63-2.84a7.674 7.674 0 011.743-2.711 7.674 7.674 0 012.711-1.743c.782-.344 1.619-.561 2.84-.63C10.681 2 11.07 2 12 2zm0 5.838a6.162 6.162 0 00-6.162 6.162A6.162 6.162 0 0012 18.162a6.162 6.162 0 006.162-6.162A6.162 6.162 0 0012 5.838zm0 10.072a3.91 3.91 0 110-7.82 3.91 3.91 0 010 7.82zm7.406-12.54a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/>
-                </svg>
+        <a href="https://www.instagram.com/diwakarneupane264/" className="text-gray-400 hover:text-white transition-transform ease-in-out hover:scale-125">
+            <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+            <path
+            d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm8.72 1.5h-8.94A4.27 4.27 0 0 0 3.25 7.75v8.94a4.27 4.27 0 0 0 4.27 4.27h8.94a4.27 4.27 0 0 0 4.27-4.27v-8.94a4.27 4.27 0 0 0-4.27-4.27zM12 7.75a4.25 4.25 0 1 1 0 8.5a4.25 4.25 0 0 1 0-8.5zm0 1.5a2.75 2.75 0 1 0 0 5.5a2.75 2.75 0 0 0 0-5.5zm5.75-.61a1.12 1.12 0 1 1 0 2.24a1.12 1.12 0 0 1 0-2.24z"
+            fill="currentColor"
+            />
+            </svg>
         </a>
-
           </div>
           <div className="border-t border-gray-700 pt-4 text-gray-400">
             &copy; 2024 Diwakar Neupane. All rights reserved.
@@ -381,17 +428,21 @@ const Card = ({imgUrl,title,discription,rating}:{
       <motion.div
         className="relative w-72 h-80 rounded-lg flex items-center justify-center overflow-hidden transition-transform duration-600 ease-[cubic-bezier(0.23, 1, 0.32, 1)]"
         whileHover={{ scale: 1.1, rotate: -5, boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)' }}
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
         style={{ backgroundImage: `url(${imgUrl})`, backgroundSize: 'cover' }}
       >
         <motion.div
-          className="absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2 rotate-45 w-full h-full p-5 bg-white opacity-0 transition-all duration-600 ease-[cubic-bezier(0.23, 1, 0.32, 1)]"
+          className="absolute top-0 left-0  h-full w-full p-5 bg-white opacity-0"
           whileHover={{ opacity: 1, rotate: 0 }}
         >
           <p className="m-0 text-xl font-bold text-gray-800">{title}</p>
           <p className="mt-2 text-sm text-gray-500"> {discription}</p>
           <p className="mt-2 text-sm text-gray-500">IMDB: {rating}</p>
           <button
-          onClick={() => alert("Go to the IMDB to watch the series")}
+          onClick={() => 
+            window.open("https://www.imdb.com/")
+        }
           className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg">Watch Now</button>
         </motion.div>
       </motion.div>
