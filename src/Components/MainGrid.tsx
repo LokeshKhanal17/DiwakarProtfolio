@@ -456,7 +456,7 @@ const BlogCard = () => {
           repeat: Infinity,
         }}
       >
-        {gridItems.map((item, index) => (
+        {gridItems.map(( index) => (
           <div
             key={index}
             className="bg-white w-36 h-52 rounded-lg shadow-lg m-2"
