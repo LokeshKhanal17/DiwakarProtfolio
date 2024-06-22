@@ -1,4 +1,4 @@
-import React from "react";
+
 import profile from "../images/profile.jpeg";
 import { motion } from "framer-motion";
 const Footer = () => {
