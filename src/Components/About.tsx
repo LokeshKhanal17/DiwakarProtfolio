@@ -8,6 +8,56 @@ import Footer from "./Footer";
 const About = () => {
   return (
     <div className="min-h-screen w-full bg-zinc-900 px-4 py-12 text-zinc-50 rounded-lg">
+      <motion.span
+      initial={{
+        opacity: 0,
+        y: 100,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+      }}
+      transition={{
+        duration: 3,
+        delay: 0.2,
+        type: "tween",
+        stiffness: 200,
+        ease: "easeInOut",
+      }}
+      className="flex justify-center items-center">
+        <h1 className="text-8xl text-center mb-8 font-extrabold">
+       <span
+          className="text-blue-400 hover:text-blue-900">About </span>
+          
+        <span className="text-red-400 hover:text-red-900">Me</span>
+        </h1>
+        <motion.img
+        initial={{
+          opacity: 0,
+          x: 100,
+        }}
+        animate={{
+          opacity: 1,
+          x: 0,
+        }}
+        transition={{
+          duration: 3,
+          delay: 0.2,
+          type: "tween",
+          stiffness: 200,
+          ease: "easeInOut",
+        }}
+        whileHover={
+          {
+            scale: 1.1, rotate: 360,x: 250, y: 120,
+          }
+
+        }
+        className="w-24 h-24 bg-gray-300 mx-4 rounded-lg shadow-lg"
+        src="https://img.icons8.com/ios/452/about.png"
+        alt="about"
+      />
+      </motion.span>
       <motion.div
         initial="initial"
         animate="animate"
@@ -20,7 +70,55 @@ const About = () => {
         <LocationBlock />
         <EmailListBlock />
       </motion.div>
+      <motion.button
+      initial={{
+        opacity: 0,
+        y: 100,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+      }}
+      transition={{
+        duration: 3,
+        delay: 0.2,
+        type: "tween",
+        stiffness: 200,
+        ease: "easeInOut",
+      }}
+      className="w-20 bg-red-400 hover:bg-red-500 text-zinc-50 p-4 rounded-full shadow-lg m-4"
+      onClick={
+        () => {
+          //go to resume
+          window.open("https://drive.google.com/file/d/1y2H1o5oZy9X5Q2v3h9X2X9VvI9oV7JZz/view?usp=sharing");
+        }
+      }
+
+      >
+        Resume
+      </motion.button>
       <FavSeries />
+      <motion.button
+      initial={{
+        opacity: 0,
+        y: 100,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+      }}
+      transition={{
+        duration: 3,
+        delay: 0.2,
+        type: "tween",
+        stiffness: 200,
+        ease: "easeInOut",
+      }}
+      className="fixed bottom-4 right-4 bg-red-400 hover:bg-red-500 text-zinc-50 p-4 rounded-full shadow-lg"
+      >
+        <a href="#top">Back to top</a>
+      </motion.button>
+
       <Footer />
     </div>
 
@@ -29,9 +127,25 @@ const About = () => {
 
 export const AboutBlock = () => (
     <Block className="col-span-12 text-3xl leading-snug">
-      <p>
+      <motion.p
+      initial={{
+        opacity: 0,
+        y: 100,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+      }}
+      transition={{
+        duration: 3,
+        delay: 0.2,
+        type: "tween",
+        stiffness: 200,
+        ease: "easeInOut",
+      }}
+      >
       Passions Beyond Boundaries: Cricket, Anime, Series, and Nature{" "}
-        <span className="text-zinc-400">
+        <span className="text-zinc-400 font-thin">
           My multifaceted passions encompass an ardent love for cricket, an insatiable appetite for anime,
           a penchant for binge-watching captivating series, and a profound appreciation for the serenity
           of nature. As a cricket aficionado, I meticulously dissect matches, revel in the strategic nuances
@@ -42,7 +156,7 @@ export const AboutBlock = () => (
           and tranquil vistas. These diverse interests coalesce to enrich my life, infusing it with excitement
           and a continuous thirst for discovery.
         </span>
-      </p>
+      </motion.p>
     </Block>
   );
   
@@ -201,10 +315,32 @@ export const AboutBlock = () => (
      >
        {
        <>
-          <h1 className="text-3xl font-bold text-center">My Favorite Series</h1>
-          <p className="text-center text-lg mb-4">
+          <h1 className="text-3xl font-bold text-center ">
+            <span className="text-blue-400 hover:text-blue-900">My </span>
+            <span className="text-blue-400 hover:text-blue-900">Favorite </span>
+            <span className="text-red-400 hover:text-red-900">Series</span>
+
+
+          </h1>
+          <motion.p 
+          initial={{
+            opacity: 0,
+            y: 100,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 3,
+            delay: 0.2,
+            type: "tween",
+            stiffness: 200,
+            ease: "easeInOut",
+          }}
+          className="text-center text-lg mb-4 text-gray-500 hover:text-gray-200">
             Here are some of my favorite series that I highly recommend.
-          </p>
+          </motion.p>
        </>
        }
        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">

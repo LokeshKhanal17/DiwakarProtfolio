@@ -3,10 +3,17 @@ import { twMerge } from "tailwind-merge";
 import { FiArrowRight} from "react-icons/fi";
 import { SiFacebook, SiInstagram, SiTiktok, SiX } from 'react-icons/si';
 import profile from "../images/profile.jpeg";
-import { useState } from "react";
-import { useRef } from "react";
+import { useState,useEffect } from "react";
 import Footer from "./Footer";
 import "../ComponentsStyle/Main.MusicCard.css"
+import cover1 from "../images/MusicCover1.png";
+import cover2 from "../images/MusicCover2.jpeg";
+import cover3 from "../images/MusicCover3.png";
+import "../ComponentsStyle/WeatherCard.css";
+
+const ApiKey = '239dd7e146632848395d532633198a9d';
+
+
 
 export const MainGrid = () => {
   return (
@@ -59,6 +66,7 @@ export const Block = ({ className, ...rest }: { className: string, [key: string]
     />
   );
 };
+
 
 const HeaderBlock = () => {
     const [isHovered, setIsHovered] = useState(false);
@@ -176,37 +184,23 @@ const SocialsBlock = () => (
 const MusicCard = () => {
   const topThreeSongs = [
     {
-      name: "Time in a Bottle",
-      artist: "Jim Croce",
-      albumCover: "https://i.scdn.co/image/ab67616d0000b273c9f0d1b0d3d4f3b5f1d3f2f6",
+      name: "Mehrbaan",
+      artist: "Ritviz",
+      albumCover: cover1,
     },
     {
-      name: "The Boxer",
-      artist: "Simon & Garfunkel",
-      albumCover: "https://i.scdn.co/image/ab67616d0000b273c9f0d1b0d3d4f3b5f1d3f2f6",
+      name: "DanDelions",
+      artist: "Ruth B",
+      albumCover: cover2,
     },
     {
-      name: "The Sound of Silence",
-      artist: "Simon & Garfunkel",
-      albumCover: "https://i.scdn.co/image/ab67616d0000b273c9f0d1b0d3d4f3b5f1d3f2f6",
+      name: "Let Her Go",
+      artist: "Passenger",
+      albumCover: cover3,
     },
   ];
   const [playingSongIndex, setPlayingSongIndex] = useState<number | null>(null); 
  
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
-
-  const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
   const handlePlayClick = (index: number) => {
     setPlayingSongIndex(index === playingSongIndex ? null : index);
   };
@@ -275,7 +269,7 @@ const MusicCard = () => {
             <p className="artist">{song.artist}</p>
           </div>
           <div className="albumcover">
-            <img src={song.albumCover} alt="album cover" />
+            <img src={song.albumCover}  />
           </div>
           <div className="loading">
             {playingSongIndex === index ? (
@@ -321,26 +315,156 @@ const MusicCard = () => {
   );
 }
 
+
 const WeatherCard = () => {
+  const [weatherData, setWeatherData] = useState<any>(null);
+
+  const getData = async (lat: number, lon: number) => {
+    const url =
+      "https://api.openweathermap.org/data/2.5/weather?lat=" +
+      lat +
+      "&lon=" +
+      lon +
+      "&appid=" +
+      ApiKey;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  };
+
+  const TempToC = (temp: number) => {
+    return Math.round(temp - 273.15);
+  };
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      const data = await getData(lat, lon);
+      setWeatherData(data);
+    });
+  }, []); // Only run once on component mount
+
   return (
-    <Block className="col-span-12 md:col-span-6">
-      <h2 className="mb-4 text-2xl font-semibold">Weather</h2>
-      <p className="text-lg">
-        I love the weather. I enjoy watching the weather and keeping up with
-        the latest forecasts.
-      </p>
+    <Block className="col-span-12 md:col-span-6 ">
+      <h2 className="mb-4 text-2xl font-semibold">
+        What's the weather like?
+      </h2>
+      
+      {weatherData ? (
+        <div className="card">
+
+        <div className="card__date">
+          <span className="time">
+            {new Date().getHours()}:{new Date().getMinutes()}
+          </span>
+          <span className="date">
+            {new Date().toDateString()}
+          </span>
+        </div>
+          <div className="popup">
+            <div className="popup__icon">
+            </div>
+            <div className="popup__weather">
+              <span className="popup__temp">
+                {TempToC(weatherData.main.temp)} °C {" "}
+              </span>
+              <span className="popup__desc">
+                {weatherData.weather[0].description} {" "}
+              </span>
+              <span className="popup__city  font-bold">
+                {weatherData.name}
+              </span>
+            </div>
+    </div>
+
+</div>
+      ) : (
+        <Socket />
+        
+      )}
     </Block>
   );
-}
+};
+
+const Gel = ({ className }: { className: string }) => (
+  <div className={`gel ${className}`}>
+    <div className="hex-brick h1"></div>
+    <div className="hex-brick h2"></div>
+    <div className="hex-brick h3"></div>
+  </div>
+);
+
+const Socket = () => {
+  return (
+    <div className="socket">
+      <Gel className="center-gel" />
+      <Gel className="c1 r1" />
+      <Gel className="c2 r1" />
+      <Gel className="c3 r1" />
+      <Gel className="c4 r1" />
+      <Gel className="c5 r1" />
+      <Gel className="c6 r1" />
+      <Gel className="c7 r2" />
+      <Gel className="c8 r2" />
+      <Gel className="c9 r2" />
+      <Gel className="c10 r2" />
+      <Gel className="c11 r2" />
+      <Gel className="c12 r2" />
+      <Gel className="c13 r2" />
+      <Gel className="c14 r2" />
+      <Gel className="c15 r2" />
+      <Gel className="c16 r2" />
+      <Gel className="c17 r2" />
+      <Gel className="c18 r2" />
+      <Gel className="c19 r3" />
+      <Gel className="c20 r3" />
+      <Gel className="c21 r3" />
+      <Gel className="c22 r3" />
+      <Gel className="c23 r3" />
+      <Gel className="c24 r3" />
+      <Gel className="c25 r3" />
+      <Gel className="c26 r3" />
+      <Gel className="c28 r3" />
+      <Gel className="c29 r3" />
+      <Gel className="c30 r3" />
+      <Gel className="c31 r3" />
+      <Gel className="c32 r3" />
+      <Gel className="c33 r3" />
+      <Gel className="c34 r3" />
+      <Gel className="c35 r3" />
+      <Gel className="c36 r3" />
+      <Gel className="c37 r3" />
+    </div>
+  );
+};
+
 
 const BlogCard = () => {
+  const gridItems = [1, 2, 3, 4, 5, 6]; // Example items, replace with your content
+
   return (
-    <Block className="col-span-12 md:col-span-6">
-      <h2 className="mb-4 text-2xl font-semibold">Blog</h2>
-      <p className="text-lg">
-        I love writing. I enjoy expressing my thoughts and ideas through my
-        writing.
-      </p>
+    <Block className="col-span-12 md:col-span-6 overflow-hidden relative">
+      <motion.div
+        className="w-full flex"
+        animate={{
+          x: [-100, '100%', '100%', -100], // Initial offset, right to left, then wrap around
+        }}
+        transition={{
+          duration: 10, // Total duration for one cycle (right to left and back)
+          ease: 'linear',
+          repeat: Infinity,
+        }}
+      >
+        {gridItems.map((item, index) => (
+          <div
+            key={index}
+            className="bg-white w-36 h-52 rounded-lg shadow-lg m-2"
+          >
+            {/* Replace with actual content */}
+          </div>
+        ))}
+      </motion.div>
     </Block>
   );
 }
