@@ -1,7 +1,12 @@
 import { motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { FiArrowRight} from "react-icons/fi";
-import { SiFacebook, SiInstagram, SiTiktok, SiX } from 'react-icons/si';
+import { SiFacebook, SiInstagram, SiTiktok, SiX} from 'react-icons/si';
+import { MdOutlineNetworkCell } from 'react-icons/md';
+import { FaWifi, FaBatteryThreeQuarters } from 'react-icons/fa';
+
+import { BlogCard } from "./BlogCard";
+
 import profile from "../images/profile.jpeg";
 import { useState,useEffect } from "react";
 import Footer from "./Footer";
@@ -32,7 +37,29 @@ export const MainGrid = () => {
         <WeatherCard />
         <BlogCard />
       </motion.div>
+      <div className="flex justify-between items-center w-full">
+      <motion.button
+        whileHover={{
+          rotate: "2.5deg",
+          scale: 1.1,
+        }}
+        className="flex p-2 bg-black text-gray-100 rounded-lg"
+      >
+       <a href="#top">Back to Top</a>
+      </motion.button>
+      <motion.button
+        whileHover={{
+          rotate: "2.5deg",
+          scale: 1.1,
+        }}
+        className="flex p-2 bg-white text-gray-700 rounded-lg"
+      >
+        See More
+      </motion.button>
+
+      </div>
       <Footer />
+
     </div>
   );
 };
@@ -353,7 +380,6 @@ const WeatherCard = () => {
       
       {weatherData ? (
         <div className="card">
-
         <div className="card__date">
           <span className="time">
             {new Date().getHours()}:{new Date().getMinutes()}
@@ -363,17 +389,21 @@ const WeatherCard = () => {
           </span>
         </div>
           <div className="popup">
-            <div className="popup__icon">
-            </div>
+          <div className="popup__location">
+            <span className="city">{weatherData.name} {", "}</span>
+            <span className="country">{weatherData.sys.country}</span>
+          </div>
+          <div className="absolute right-0 top-0 flex gap-2 mr-2 bg-gray-400">
+            <MdOutlineNetworkCell />
+            <FaWifi />
+            <FaBatteryThreeQuarters />
+          </div>
             <div className="popup__weather">
-              <span className="popup__temp">
+              <span className="popup__temp font-semibold text-xl">
                 {TempToC(weatherData.main.temp)} °C {" "}
               </span>
               <span className="popup__desc">
                 {weatherData.weather[0].description} {" "}
-              </span>
-              <span className="popup__city  font-bold">
-                {weatherData.name}
               </span>
             </div>
     </div>
@@ -440,34 +470,34 @@ const Socket = () => {
 };
 
 
-const BlogCard = () => {
-  const gridItems = [1, 2, 3, 4, 5, 6]; // Example items, replace with your content
+// const BlogCard = () => {
+//   const gridItems = [1, 2, 3, 4, 5, 6]; // Example items, replace with your content
 
-  return (
-    <Block className="col-span-12 md:col-span-6 overflow-hidden relative">
-      <motion.div
-        className="w-full flex"
-        animate={{
-          x: [-100, '100%', '100%', -100], // Initial offset, right to left, then wrap around
-        }}
-        transition={{
-          duration: 10, // Total duration for one cycle (right to left and back)
-          ease: 'linear',
-          repeat: Infinity,
-        }}
-      >
-        {gridItems.map(( index) => (
-          <div
-            key={index}
-            className="bg-white w-36 h-52 rounded-lg shadow-lg m-2"
-          >
-            {/* Replace with actual content */}
-          </div>
-        ))}
-      </motion.div>
-    </Block>
-  );
-}
+//   return (
+//     <Block className="col-span-12 md:col-span-6 overflow-hidden relative">
+//       <motion.div
+//         className="w-full flex"
+//         animate={{
+//           x: [-100, '100%', '100%', -100], // Initial offset, right to left, then wrap around
+//         }}
+//         transition={{
+//           duration: 10, // Total duration for one cycle (right to left and back)
+//           ease: 'linear',
+//           repeat: Infinity,
+//         }}
+//       >
+//         {gridItems.map(( index) => (
+//           <div
+//             key={index}
+//             className="bg-white w-36 h-52 rounded-lg shadow-lg m-2"
+//           >
+//             {/* Replace with actual content */}
+//           </div>
+//         ))}
+//       </motion.div>
+//     </Block>
+//   );
+// }
 
 export { SocialsBlock };
 

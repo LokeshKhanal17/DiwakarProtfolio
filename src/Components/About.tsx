@@ -18,7 +18,7 @@ const About = () => {
         y: 0,
       }}
       transition={{
-        duration: 3,
+        duration: 1,
         delay: 0.2,
         type: "tween",
         stiffness: 200,
@@ -41,7 +41,7 @@ const About = () => {
           x: 0,
         }}
         transition={{
-          duration: 3,
+          duration: 1,
           delay: 0.2,
           type: "tween",
           stiffness: 200,
@@ -80,13 +80,13 @@ const About = () => {
         y: 0,
       }}
       transition={{
-        duration: 3,
+        duration: 1,
         delay: 0.2,
         type: "tween",
         stiffness: 200,
         ease: "easeInOut",
       }}
-      className="w-20 bg-red-400 hover:bg-red-500 text-zinc-50 p-4 rounded-full shadow-lg m-4"
+      className="w-28 bg-gray-900 hover:bg-gray-500 text-zinc-50 px-4 mt-7 p-4 text-xl rounded-lg shadow-lg m-4"
       onClick={
         () => {
           //go to resume
@@ -108,7 +108,7 @@ const About = () => {
         y: 0,
       }}
       transition={{
-        duration: 3,
+        duration: 1,
         delay: 0.2,
         type: "tween",
         stiffness: 200,
@@ -137,7 +137,7 @@ export const AboutBlock = () => (
         y: 0,
       }}
       transition={{
-        duration: 3,
+        duration: 1,
         delay: 0.2,
         type: "tween",
         stiffness: 200,
@@ -306,7 +306,7 @@ export const AboutBlock = () => (
          y: 0,
        }}
        transition={{
-         duration: 3,
+         duration: 1,
          delay: 0.2,
          type: "tween",
          stiffness: 200,
@@ -332,7 +332,7 @@ export const AboutBlock = () => (
             y: 0,
           }}
           transition={{
-            duration: 3,
+            duration: 1,
             delay: 0.2,
             type: "tween",
             stiffness: 200,

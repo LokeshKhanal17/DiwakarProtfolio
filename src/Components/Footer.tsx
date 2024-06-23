@@ -3,7 +3,7 @@ import profile from "../images/profile.jpeg";
 import { motion } from "framer-motion";
 const Footer = () => {
     return (
-      <footer className="mt-12 bg-gray-900 text-white py-8">
+      <footer className="mt-12 bg-gray-900 text-white py-8 rounded-lg">
         <div className="container mx-auto px-4 text-center">
           <div className="mb-6">
             <motion.img

@@ -341,21 +341,20 @@
   }
   
   .card {
-    width: 7vw;
-    height: 20vh;
-    background: rgb(175, 171, 171);
-    border: 3px solid rgb(17, 4, 94);
+    width: 10vw;
+    height: 29vh;
+    background: rgb(37, 36, 36);
+    border: 3px solid rgb(192, 191, 195);
     border-radius: 15px;
     position: relative;
     margin-left: auto;
     margin-right: auto;
-
     padding: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 22px;
-    transition: all 1s ease;
+    transition: all 1s ease-in-out;
     color: antiquewhite;
   }
   
@@ -367,7 +366,7 @@
     bottom: 10px;
     right: 77px;
     border-radius: 50%;
-    background-color: rgb(17, 4, 94);
+    background-color: rgb(209, 207, 221);
   }
   
   .card__date {
@@ -381,7 +380,7 @@
   }
   
   .popup {
-    background-color: #444746;
+    background-color: #b9bebc;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -396,15 +395,19 @@
   
   .card__date , .popup {
     opacity: 0;
-    transition: all .5s ease;
+    transition: all .5s ease-in-out;
   }
   
   .card:hover {
-    transform: rotate3d(5, 5, 10, -45deg);
-    box-shadow: -40px 0px 5px 10px #289FED, -80px 0px 10px 20px #9dd2f5;
-    ;
+    transform: scale(1.1);
+    background-image: url("https://cdn.dribbble.com/userupload/9881930/file/original-b0a6f946f5d897b5c3f5e6d1f180f2c1.jpg?resize=700x525&vertical=center");
+
   }
   
   .card:hover .card__date , .card:hover .popup {
     opacity: 1;
+    background-color: transparent;
+    border-radius: 2rem;
   }
+
+

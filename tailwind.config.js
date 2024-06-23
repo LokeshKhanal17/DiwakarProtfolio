@@ -6,6 +6,14 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        'sky': '#87CEEB',
+        'cloud': '#F0F8FF',
+        'sunshine': '#FFD700',
+      },
+      Images: {
+        'CustomImage': 'url("https://cdn.dribbble.com/users/12780792/screenshots/19271218/media/5d7966ac9ccc7b88a4a91fb1f3d639ea.png?resize=400x300&vertical=center")',
+      },
       animation: {
         clouds: "clouds 8s ease-in-out infinite",
         sunshines: "sunshines 2s infinite",
