@@ -21,6 +21,11 @@ const ApiKey = '239dd7e146632848395d532633198a9d';
 
 
 export const MainGrid = () => {
+  const handleClick=(e:any)=>{
+    //goes to Blog Page when clicked
+    e.preventDefault();
+    window.location.href='/Blog';
+  }
   return (
     <div className="min-h-screen w-full bg-zinc-900 px-4 py-12 text-zinc-50 rounded-lg">
       <motion.div
@@ -35,12 +40,12 @@ export const MainGrid = () => {
         <SocialsBlock />
         <MusicCard />
         <WeatherCard />
-        <BlogCard />
+       
       </motion.div>
+      <BlogCard />
       <div className="flex justify-between items-center w-full">
       <motion.button
         whileHover={{
-          rotate: "2.5deg",
           scale: 1.1,
         }}
         className="flex p-2 bg-black text-gray-100 rounded-lg"
@@ -49,10 +54,12 @@ export const MainGrid = () => {
       </motion.button>
       <motion.button
         whileHover={{
-          rotate: "2.5deg",
           scale: 1.1,
         }}
         className="flex p-2 bg-white text-gray-700 rounded-lg"
+        onClick={
+          handleClick
+        }
       >
         See More
       </motion.button>
@@ -378,7 +385,7 @@ const WeatherCard = () => {
         What's the weather like?
       </h2>
       
-      {weatherData ? (
+      {false ? (
         <div className="card">
         <div className="card__date">
           <span className="time">
@@ -399,7 +406,7 @@ const WeatherCard = () => {
             <FaBatteryThreeQuarters />
           </div>
             <div className="popup__weather">
-              <span className="popup__temp font-semibold text-xl">
+              <span className="popup__temp font-semibold text-2xl ">
                 {TempToC(weatherData.main.temp)} °C {" "}
               </span>
               <span className="popup__desc">
@@ -469,35 +476,6 @@ const Socket = () => {
   );
 };
 
-
-// const BlogCard = () => {
-//   const gridItems = [1, 2, 3, 4, 5, 6]; // Example items, replace with your content
-
-//   return (
-//     <Block className="col-span-12 md:col-span-6 overflow-hidden relative">
-//       <motion.div
-//         className="w-full flex"
-//         animate={{
-//           x: [-100, '100%', '100%', -100], // Initial offset, right to left, then wrap around
-//         }}
-//         transition={{
-//           duration: 10, // Total duration for one cycle (right to left and back)
-//           ease: 'linear',
-//           repeat: Infinity,
-//         }}
-//       >
-//         {gridItems.map(( index) => (
-//           <div
-//             key={index}
-//             className="bg-white w-36 h-52 rounded-lg shadow-lg m-2"
-//           >
-//             {/* Replace with actual content */}
-//           </div>
-//         ))}
-//       </motion.div>
-//     </Block>
-//   );
-// }
 
 export { SocialsBlock };
 

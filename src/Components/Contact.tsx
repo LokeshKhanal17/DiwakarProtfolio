@@ -1,5 +1,3 @@
-import React from 'react'
-import { LiaLinkSolid } from 'react-icons/lia'
 import { SiFacebook, SiGithub, SiInstagram, SiLinkedin } from 'react-icons/si'
 //add contact form
 //and some socal LiaLinkSolid
@@ -21,7 +19,7 @@ const Contact = () => {
             <SiLinkedin className='w-6 h-6'/>
             </a>
         </div>
-        <form className='flex flex-col items-center w-auto h-screen'>
+        <form className='flex flex-col items-center flex-center'>
             <input type='text' placeholder='Name' className='w-1/3 p-2 my-2 border border-gray-300 rounded-md'/>
             <input type='email' placeholder='Email' className='w-1/3 p-2 my-2 border border-gray-300 rounded-md'/>
             <textarea placeholder='Message' className='w-1/3 p-2 my-2 border border-gray-300 rounded-md'/>

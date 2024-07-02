@@ -1,4 +1,4 @@
-import { BsTransparency } from 'react-icons/bs'
+
 import'../ComponentsStyle/BlogCard.css'
 import { motion } from 'framer-motion'
 
@@ -32,8 +32,9 @@ const Blogs = [
 ]
 export const BlogCard = () => {
   return (
-    <div className='grid grid-flow-col gap-5'>
-    {
+    
+    <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4 sm:'>
+    { 
         Blogs.map((blog) => {
             return (
                 <motion.div 
@@ -44,8 +45,9 @@ export const BlogCard = () => {
                 whileHover={{scale: 1.25,
                 transition: {duration: 0.5, type: 'tween', ease: 'easeInOut'}
 
-                }}
-                className='w-52 h-72 bg-gray-200 custom-border-radius'>
+                }} key={blog.title}
+                
+                className='h-76 w-60 mb-2 bg-gray-200 custom-border-radius'>
                     <img src={blog.image} alt='blog' className='w-full h-30 object-cover custom-border-radius'/>
                     <div className='p-2'>
                         <h3 className='text-lg font-semibold text-black'>{blog.title}</h3>
