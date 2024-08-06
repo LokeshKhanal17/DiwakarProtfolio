@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'custom': ['CustomFont', 'sans'],
+      },
       colors: {
         'sky': '#87CEEB',
         'cloud': '#F0F8FF',

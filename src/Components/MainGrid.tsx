@@ -27,7 +27,7 @@ export const MainGrid = () => {
     window.location.href='/Blog';
   }
   return (
-    <div className="min-h-screen w-full bg-zinc-900 px-4 py-12 text-zinc-50 rounded-lg">
+    <div className="min-h-screen w-full bg-zinc-900 px-4 py-12 text-zinc-50 rounded-lg font-custom">
       <motion.div
         initial="initial"
         animate="animate"
